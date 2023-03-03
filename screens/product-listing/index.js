@@ -53,7 +53,7 @@ const ProductListing = () => {
   };
 
   return <View style={styles.container}>
-      <FlatList data={products} renderItem={({
+      <FlatList data={Recipes} renderItem={({
       item
     }) => <View style={styles.productContainer}>
             <View style={styles.imageContainer}>
