@@ -53,7 +53,7 @@ const ProductListing = () => {
   };
 
   return <View style={styles.container}>
-      <FlatList data={Recipes} renderItem={({
+      <FlatList data={products} renderItem={({
       item
     }) => <View style={styles.productContainer}>
             <View style={styles.imageContainer}>
@@ -67,7 +67,7 @@ const ProductListing = () => {
                 </Text>
               </View>
             </View>
-            <Button buttonText="Details" style={styles.button} hideShadow />
+            <Pressable onPress={{}}><View style={styles.qeoNNhmC}><Text style={styles.TiVkDKYZ}>Details</Text></View></Pressable>
           </View>} />
     </View>;
 };
@@ -137,6 +137,16 @@ const styles = StyleSheet.create({
   button: {
     marginHorizontal: 20,
     marginVertical: 15
+  },
+  qeoNNhmC: {
+    backgroundColor: "#E45700",
+    padding: 10,
+    borderRadius: 10,
+    marginTop: 5
+  },
+  TiVkDKYZ: {
+    textAlign: "center",
+    color: "white"
   }
 });
 export default ProductListing;
@@ -154,12 +164,12 @@ const Button = params => {
   };
   return <View style={[buttonStyles.btnContainer, params.style]}>
       <View style={!params.hideShadow ? buttonStyles.shadowContainer : null}>
-        <Pressable style={[buttonStyles.btn, btnStyle]} onPress={params.onPress}>
-          <Text style={[buttonStyles.btnText, btnText]}>
+        
+          <Pressable onPress={{}}><Pressable onPress={{}}><Text style={[buttonStyles.btnText, btnText]}>
             {params.buttonText}
-          </Text>
+          </Text></Pressable></Pressable>
           <View style={styles.childrenContainer}>{params.children}</View>
-        </Pressable>
+        
       </View>
     </View>;
 };
