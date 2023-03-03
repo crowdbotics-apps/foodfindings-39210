@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Text, StyleSheet, View, SafeAreaView, Image } from "react-native";
 
-const AboutTheAppScreen = params => {
+const AboutTheAppScreen = route => {
+  const {
+    item = {}
+  } = route.params || {};
   const [ImageSource, setImageSource] = useState();
   return <SafeAreaView style={styles.container}>
       <View style={styles.imgScroller}>
@@ -11,7 +14,7 @@ const AboutTheAppScreen = params => {
       <View style={styles.textContainer}>
         <View><Text style={styles.h1}>Recipe Name</Text></View>
         <View style={styles.xRkJweVS}><View style={styles.MhhhXZCC}>
-          <Text style={styles.MqLCMTKd}>Prep Time: </Text> <Text>100</Text>
+          <Text style={styles.MqLCMTKd}>Prep Time: </Text> <Text>{item.prep_time}</Text>
         </View><View style={styles.uXCtqgPR}> <Text style={styles.SvrVsbuB}>Cook Time: </Text><Text>100</Text></View></View>
         <Text style={styles.text}>I understand that uses my dolor sit amet, consectetur adipiscing elit. Viverra auctor laoreet sodales congue sit volutpat quisque. Mattis nisl in convallis sed et. Est turpis aliquam est, ut mattis nisi, amet feugiat. Aliquet odio consequat, nisl mauris ullamcorper malesuada velit sem dolor. Dui morbi porttitor integer felis, pellentesque quam. Et accumsan justo, massa tincidunt arcu fermentum est. Sed nibh id vel, diam ut feugiat nec, placerat mauris. Neque lorem netus lacinia elit est libero sed. Commodo viverra et, neque augue augue mauris, nunc ut nec.</Text>
       </View>

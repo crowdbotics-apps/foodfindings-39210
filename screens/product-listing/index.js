@@ -1,3 +1,6 @@
+import { api_v1_recipe_list } from "./../../store/foodfindingsAPI/recipes.slice.js";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import React from "react";
 import { Text, View, StyleSheet, Image, Pressable, FlatList } from "react-native";
@@ -23,7 +26,13 @@ const products = [{
   image: require("./assets/productImage.png")
 }];
 
-const ProductListing = () => {
+const ProductListing = ({
+  navigation
+}) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(api_v1_recipe_list());
+  }, []);
   const Recipes = useSelector(state => state.Recipes);
 
   const handleProductSelect = product => {
@@ -60,14 +69,16 @@ const ProductListing = () => {
               <Image style={styles.image} source={require("./images.png")} />
             </View>
             <View style={styles.flexRow}>
-              <Text style={styles.productName}>Recipe Name</Text>
+              <Text style={styles.productName}>{item.title}</Text>
               <View style={styles.flexRow}>
-                <Text style={styles.counterText}>
-                  1
-                </Text>
+                <Text style={styles.counterText}>{item.rating}</Text>
               </View>
             </View>
-            <Pressable onPress={{}}><View style={styles.qeoNNhmC}><Text style={styles.TiVkDKYZ}>Details</Text></View></Pressable>
+            <Pressable onPress={() => {
+        navigation.navigate("aboutTheApp", {
+          item: item
+        });
+      }}><View style={styles.qeoNNhmC}><Text style={styles.TiVkDKYZ}>Details</Text></View></Pressable>
           </View>} />
     </View>;
 };
