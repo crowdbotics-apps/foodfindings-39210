@@ -1,33 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Text, View, StyleSheet, Image, Pressable, FlatList } from "react-native";
+const products = [{
+  id: 1,
+  title: "Dish name",
+  count: 1,
+  image: require("./assets/productImage.png")
+}, {
+  id: 2,
+  title: "Dish name",
+  count: 1,
+  image: require("./assets/productImage.png")
+}, {
+  id: 3,
+  title: "Dish name",
+  count: 1,
+  image: require("./assets/productImage.png")
+}, {
+  id: 4,
+  title: "Dish name",
+  count: 1,
+  image: require("./assets/productImage.png")
+}];
 
 const ProductListing = () => {
-  const [products, setProducts] = useState([]);
-  const [selectedProducts, setSelectedProducts] = useState([]);
-  useEffect(() => {
-    setProducts([{
-      id: 1,
-      title: "Dish name",
-      count: 1,
-      image: require("./assets/productImage.png")
-    }, {
-      id: 2,
-      title: "Dish name",
-      count: 1,
-      image: require("./assets/productImage.png")
-    }, {
-      id: 3,
-      title: "Dish name",
-      count: 1,
-      image: require("./assets/productImage.png")
-    }, {
-      id: 4,
-      title: "Dish name",
-      count: 1,
-      image: require("./assets/productImage.png")
-    }]);
-  }, []);
-
   const handleProductSelect = product => {
     if (selectedProducts.includes(product)) {
       const newSelectedProducts = selectedProducts.filter(selectedProduct => selectedProduct.id !== product.id);
