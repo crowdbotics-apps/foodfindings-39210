@@ -12,9 +12,7 @@ const Untitled2 = ({
       padding: 10,
       position: 'relative',
       flex: 1
-    }}><Pressable onPress={{}}><Pressable onPress={() => {
-          navigation.navigate("productListing");
-        }}><ImageBackground style={styles.OQGhXUhT} source={require("./Recipeful(2).png")} resizeMode="cover"></ImageBackground></Pressable></Pressable></ScrollView>
+    }}><Pressable onPress={{}}><ImageBackground style={styles.OQGhXUhT} source={require("./Recipeful(2).png")} resizeMode="cover"></ImageBackground></Pressable></ScrollView>
     </SafeAreaView>;
 };
 

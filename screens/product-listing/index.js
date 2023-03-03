@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import React from "react";
 import { Text, View, StyleSheet, Image, Pressable, FlatList } from "react-native";
 const products = [{
@@ -23,6 +24,8 @@ const products = [{
 }];
 
 const ProductListing = () => {
+  const Recipes = useSelector(state => state.Recipes);
+
   const handleProductSelect = product => {
     if (selectedProducts.includes(product)) {
       const newSelectedProducts = selectedProducts.filter(selectedProduct => selectedProduct.id !== product.id);
@@ -50,14 +53,14 @@ const ProductListing = () => {
   };
 
   return <View style={styles.container}>
-      <FlatList data={products} renderItem={({
+      <FlatList data={Recipes} renderItem={({
       item
     }) => <View style={styles.productContainer}>
             <View style={styles.imageContainer}>
               <Image style={styles.image} source={require("./images.png")} />
             </View>
             <View style={styles.flexRow}>
-              <Text style={styles.productName}>{item.title}</Text>
+              <Text style={styles.productName}>Recipe Name</Text>
               <View style={styles.flexRow}>
                 <Text style={styles.counterText}>
                   1
