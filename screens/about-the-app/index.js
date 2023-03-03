@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Text, StyleSheet, View, SafeAreaView, Image } from "react-native";
 
-const AboutTheAppScreen = route => {
+const AboutTheAppScreen = ({
+  route
+}) => {
   const {
     item = {}
   } = route.params || {};
