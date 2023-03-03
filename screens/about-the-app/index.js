@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     width: 318,
     height: 2,
     flexDirection: "row",
-    flex: "1"
+    flex: 1
   },
   MhhhXZCC: {
     flex: 1
