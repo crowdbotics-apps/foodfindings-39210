@@ -25,11 +25,13 @@ const getNavigation = (modules, screens, initialRoute) => {
 
       return <Stack.Screen key={name} name={name} component={Component} />;
     });
+    // forcefully hiding headers: upcoming feature
     const screenOptions = {
-      headerShown: true
+      headerShown: false
     };
+    // manual update: forcefully updating the first screen - upcoming feature
     return <NavigationContainer>
-        <Stack.Navigator initialRouteName={initialRoute} screenOptions={screenOptions}>
+        <Stack.Navigator initialRouteName={"Untitled2"} screenOptions={screenOptions}>
           {routes}
         </Stack.Navigator>
       </NavigationContainer>;

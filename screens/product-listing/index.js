@@ -33,7 +33,8 @@ const ProductListing = ({
   useEffect(() => {
     dispatch(api_v1_recipe_list());
   }, []);
-  const Recipes = useSelector(state => state.Recipes);
+  // use selector bug: upcoming fixes this sprint
+  const { entities: Recipes } = useSelector(state => state.Recipes);
   return <View style={styles.container}>
       <FlatList data={Recipes} renderItem={({
       item

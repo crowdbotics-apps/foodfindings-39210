@@ -1,6 +1,7 @@
 import axios from "axios";
 const foodfindingsAPI = axios.create({
-  baseURL: "https://foodfindings-39210-prod.herokuapp.com",
+  // model builder bug: wrong url
+  baseURL: "https://foodfindings-39210.botics.co",
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json"

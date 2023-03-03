@@ -16,8 +16,8 @@ const AboutTheAppScreen = ({
       <View style={styles.textContainer}>
         <View><Text style={styles.h1}>{item.title}</Text></View>
         <View style={styles.xRkJweVS}><View style={styles.MhhhXZCC}>
-          <Text style={styles.MqLCMTKd}>Prep Time: </Text> <Text>{item.prep_time}</Text>
-        </View><View style={styles.uXCtqgPR}> <Text style={styles.SvrVsbuB}>Cook Time: </Text><Text>{item.cook_time}</Text></View></View>
+          <Text style={styles.MqLCMTKd}>Prep Time: </Text><Text>{item.prep_time}</Text>
+        </View><View style={styles.uXCtqgPR}><Text style={styles.SvrVsbuB}>Cook Time: </Text><Text>{item.cook_time}</Text></View></View>
         <Text style={styles.text}>{item.instructions}</Text>
       </View>
     </SafeAreaView>;
@@ -56,8 +56,8 @@ const styles = StyleSheet.create({
     height: 150
   },
   xRkJweVS: {
-    width: 318,
-    height: 2,
+    width: "100%",
+    height: 200,
     flexDirection: "row",
     flex: 1
   },
