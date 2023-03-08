@@ -24,12 +24,12 @@ const getNavigation = (modules, screens, initialRoute) => {
       };
 
       return <Stack.Screen key={name} name={name} component={Component} />;
-    });
-    // forcefully hiding headers: upcoming feature
+    }); // forcefully hiding headers: upcoming feature
+
     const screenOptions = {
       headerShown: false
-    };
-    // manual update: forcefully updating the first screen - upcoming feature
+    }; // manual update: forcefully updating the first screen - upcoming feature
+
     return <NavigationContainer>
         <Stack.Navigator initialRouteName={"Untitled2"} screenOptions={screenOptions}>
           {routes}
