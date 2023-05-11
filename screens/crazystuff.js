@@ -1,1 +1,1 @@
-export const test = "What the message will be?"
+export const test = "What the message will be?";
