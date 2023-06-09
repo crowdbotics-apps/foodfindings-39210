@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, StyleSheet, View, ScrollView, SafeAreaView, Image, Pressable } from "react-native";
+import { Text, StyleSheet, View, ScrollView, SafeAreaView, ImageBackground, Pressable } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 const defaultValues = {
   title: "Recipe Title",
@@ -8,13 +8,10 @@ const defaultValues = {
   instructions: "Sed tempor mauris vel orci condimentum blandit.Etiam dolor magna, dignissim eu placerat a, ultricies sit amet sapien. Quisque quis mauris purus. Pellentesque mattis metus et ex consectetur tempus. Suspendisse lacus velit, venenatis id odio eu, posuere condimentum leo. Quisque ante tortor, posuere sit amet elit non, pellentesque venenatis mauris. Donec at arcu non ex blandit hendrerit vel ac nisi. Cras finibus lectus quis nisl euismod volutpat. "
 };
 
-const AboutTheRecipe = ({
-  route
+const CustomButton = ({
+  title,
+  fontSize = 18
 }) => {
-  const {
-    item = defaultValues
-  } = route.params || {};
-
   const onShare = async () => {
     try {
       console.log("Shared");
@@ -23,15 +20,32 @@ const AboutTheRecipe = ({
     }
   };
 
+  return <Pressable style={[styles.shareButton, {
+    fontSize: fontSize
+  }]} onPress={onShare}>
+      <Icon name="share" size={fontSize} color="white" />
+      <Text style={[styles.shareButtonText, {
+      fontSize
+    }]}>{title}</Text>
+    </Pressable>;
+};
+
+const AboutTheRecipe = ({
+  route
+}) => {
+  const {
+    item = defaultValues
+  } = route.params || {};
   return <SafeAreaView style={styles.container}>
       <ScrollView containerStyle={styles.imgScroller}>
         <View style={styles.stNDJnlx}>
-          <Image style={styles.JrJCYiRf} source={require("./images.png")} resizeMode="cover" />
+          <ImageBackground style={styles.JrJCYiRf} source={require("./broccoli.jpg")} resizeMode="cover">
+            <View>
+              <Text style={styles.h1}>{item.title}</Text>
+            </View>
+          </ImageBackground>
         </View>
         <View style={styles.textContainer}>
-          <View>
-            <Text style={styles.h1}>{item.title}</Text>
-          </View>
           <View style={styles.xRkJweVS}>
             <View style={styles.MhhhXZCC}>
               <Text style={styles.MqLCMTKd}>Prep Time: </Text>
@@ -43,10 +57,7 @@ const AboutTheRecipe = ({
             </View>
           </View>
           <Text style={styles.text}>{item.instructions}</Text>
-          <Pressable style={styles.shareButton} onPress={onShare}>
-            <Icon name="share" size={24} color="white" />
-            <Text style={styles.shareButtonText}>Share Recipe</Text>
-          </Pressable>
+          <CustomButton title="Share Recipe" fontSize={20} />
         </View>
       </ScrollView>
     </SafeAreaView>;
@@ -69,8 +80,15 @@ const styles = StyleSheet.create({
   },
   h1: {
     fontSize: 30,
-    color: "#E45700",
-    marginVertical: 30
+    color: "#FFFFFF",
+    margin: 30,
+    fontWeight: "700",
+    textShadowColor: "rgba(0, 0, 0, 0.80)",
+    textShadowOffset: {
+      width: -1,
+      height: 1
+    },
+    textShadowRadius: 10
   },
   text: {
     fontSize: 16,
@@ -78,10 +96,11 @@ const styles = StyleSheet.create({
     marginVertical: 10
   },
   JrJCYiRf: {
-    width: "70%",
+    width: "100%",
     height: 150,
     borderRadius: 20,
-    marginTop: 20
+    marginBottom: 20,
+    justifyContent: "end"
   },
   xRkJweVS: {
     width: "100%",
@@ -97,11 +116,13 @@ const styles = StyleSheet.create({
   },
   MqLCMTKd: {
     fontSize: 15,
-    fontWeight: "bold"
+    fontWeight: "bold",
+    color: "#E45700"
   },
   SvrVsbuB: {
     fontSize: 15,
-    fontWeight: "bold"
+    fontWeight: "bold",
+    color: "#E45700"
   },
   shareButton: {
     flexDirection: "row",

@@ -1,30 +1,8 @@
+import React, { useEffect, useState } from "react";
+import { Text, View, StyleSheet, Image, Pressable, FlatList, TextInput, TouchableOpacity } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import { api_v1_recipe_list } from "./../../store/foodfindingsAPI/recipes.slice.js";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import React from "react";
-import { Text, View, StyleSheet, Image, Pressable, FlatList } from "react-native";
-const products = [{
-  id: 1,
-  title: "Dish name",
-  count: 1,
-  image: require("./assets/productImage.png")
-}, {
-  id: 2,
-  title: "Dish name",
-  count: 1,
-  image: require("./assets/productImage.png")
-}, {
-  id: 3,
-  title: "Dish name",
-  count: 1,
-  image: require("./assets/productImage.png")
-}, {
-  id: 4,
-  title: "Dish name",
-  count: 1,
-  image: require("./assets/productImage.png")
-}];
+import Icon from "react-native-vector-icons/FontAwesome";
 
 const ProductListing = ({
   navigation
@@ -32,30 +10,52 @@ const ProductListing = ({
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(api_v1_recipe_list());
-  }, []); // use selector bug: upcoming fixes this sprint
-
+  }, []);
   const {
     entities: Recipes
   } = useSelector(state => state.Recipes);
+  const [search, setSearch] = useState("");
   return <View style={styles.container}>
+      <Text style={styles.title}>All Recipes</Text>
+      <View style={styles.vcOLBUwm}>
+      <TextInput style={styles.searchInput} onChangeText={text => setSearch(text)} value={search} placeholder="Search" />
+        <TouchableOpacity style={[styles.filterButton, styles.QHGGWEEL]}>
+          <View style={styles.filterButtonText}><Icon style={styles.OrVIYXNT} name="filter" color="#6F2A00" /></View>
+        </TouchableOpacity>
+        </View>
+      <View style={styles.filterButtons}>
+        <TouchableOpacity style={styles.filterButton}>
+          <Text style={styles.filterButtonText}>Breakfast</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.filterButton}>
+          <Text style={styles.filterButtonText}>Lunch</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.filterButton}>
+          <Text style={styles.filterButtonText}>Dinner</Text>
+        </TouchableOpacity>
+      </View>
       <FlatList data={Recipes} renderItem={({
       item
-    }) => <View style={styles.productContainer}>
-            <View style={styles.imageContainer}>
-              <Image style={styles.image} source={require("./images.png")} />
-            </View>
-            <View style={styles.flexRow}>
-              <Text style={styles.productName}>{item.title}</Text>
-              <View style={styles.flexRow}>
-                <Text style={styles.counterText}>{item.rating}</Text>
+    }) => <Pressable onPress={() => {
+      navigation.navigate("aboutTheApp", {
+        item: item
+      });
+    }}>
+            <View style={styles.card}>
+              <View style={styles.imageContainer}>
+                <Image style={styles.image} source={require("./broccoli.jpg")} />
+              </View>
+              <View style={styles.detailsContainer}>
+                <Text style={styles.productName}>{item.title}</Text>
+                <View style={styles.flexRow}>
+                  <Text style={styles.counterText}>{item.rating}</Text>
+                  <View style={styles.KGIqfKnH}>
+                    <Icon style={styles.icon} name="arrow-right" color="white" />
+                  </View>
+                </View>
               </View>
             </View>
-            <Pressable onPress={() => {
-        navigation.navigate("aboutTheApp", {
-          item: item
-        });
-      }}><View style={styles.qeoNNhmC}><Text style={styles.TiVkDKYZ}>Details</Text></View></Pressable>
-          </View>} />
+          </Pressable>} />
     </View>;
 };
 
@@ -64,21 +64,47 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff"
   },
-  heading: {
-    fontSize: 20
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginTop: 10,
+    marginBottom: 5
   },
-  productContainer: {
-    paddingHorizontal: 20,
-    width: "100%",
-    marginVertical: 10
+  searchInput: {
+    borderWidth: 1,
+    borderColor: "#E0E0E0",
+    borderRadius: 5,
+    marginHorizontal: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 15
   },
-  imageContainer: {
-    width: "100%",
-    height: 150,
-    borderRadius: 10,
-    justifyContent: "center",
-    alignItems: "center",
+  filterButtons: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: 10,
     marginBottom: 10,
+    marginTop: 10
+  },
+  filterButton: {
+    backgroundColor: "#F8D3BC",
+    borderRadius: 5,
+    paddingHorizontal: 15,
+    paddingVertical: 5
+  },
+  filterButtonText: {
+    fontSize: 16,
+    color: "#6F2A00"
+  },
+  card: {
+    flexDirection: "row",
+    backgroundColor: "#fff",
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: "#E0E0E0",
+    marginHorizontal: 10,
+    marginVertical: 5,
+    padding: 10,
     shadowColor: "rgba(0, 0, 0, 0.5)",
     shadowOffset: {
       width: 0,
@@ -86,54 +112,62 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-    elevation: 5,
-    borderColor: "#E45700",
-    borderWidth: 1
+    elevation: 5
   },
-  radio: {
-    position: "absolute",
-    top: 10,
-    right: 10
+  imageContainer: {
+    width: 100,
+    height: 100,
+    borderRadius: 5,
+    overflow: "hidden"
   },
   image: {
     width: "100%",
     height: "100%",
-    alignSelf: "center",
-    borderRadius: 10
+    alignSelf: "center"
+  },
+  detailsContainer: {
+    flex: 1,
+    marginLeft: 10
+  },
+  productName: {
+    fontSize: 18,
+    color: "#E45700",
+    fontWeight: "bold"
   },
   flexRow: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center"
-  },
-  productName: {
-    fontSize: 18,
-    color: "#313633",
-    marginLeft: 10,
-    flex: 1
+    alignItems: "center",
+    marginTop: 5
   },
   counterText: {
     fontSize: 18,
-    color: "#12D790"
+    color: "#505050"
   },
   icon: {
-    width: 25,
-    height: 25,
-    marginLeft: 10
+    fontSize: 20
   },
-  button: {
-    marginHorizontal: 20,
-    marginVertical: 15
-  },
-  qeoNNhmC: {
-    backgroundColor: "#E45700",
-    padding: 10,
+  KGIqfKnH: {
+    alignItems: "center",
+    justifyContent: "center",
+    width: 30,
+    height: 30,
     borderRadius: 10,
-    marginTop: 5
+    backgroundColor: "#6F2A00"
   },
-  TiVkDKYZ: {
-    textAlign: "center",
-    color: "white"
+  vcOLBUwm: {
+    marginVertical: 10,
+    flexDirection: "row",
+    width: "100%",
+    justifyContent: "space-between"
+  },
+  QHGGWEEL: {
+    alignItems: "center",
+    justifyContent: "center",
+    marginRight: 10
+  },
+  OrVIYXNT: {
+    fontSize: 20
   }
 });
 export default ProductListing;
