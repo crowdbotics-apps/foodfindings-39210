@@ -1,25 +1,54 @@
-import React, { useState } from "react";
-import { Text, StyleSheet, View, SafeAreaView, Image } from "react-native";
+import React from "react";
+import { Text, StyleSheet, View, ScrollView, SafeAreaView, Image, Pressable } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
+const defaultValues = {
+  title: "Recipe Title",
+  prep_time: 10,
+  cook_time: 40,
+  instructions: "Sed tempor mauris vel orci condimentum blandit.Etiam dolor magna, dignissim eu placerat a, ultricies sit amet sapien. Quisque quis mauris purus. Pellentesque mattis metus et ex consectetur tempus. Suspendisse lacus velit, venenatis id odio eu, posuere condimentum leo. Quisque ante tortor, posuere sit amet elit non, pellentesque venenatis mauris. Donec at arcu non ex blandit hendrerit vel ac nisi. Cras finibus lectus quis nisl euismod volutpat. "
+};
 
-const AboutTheAppScreen = ({
+const AboutTheRecipe = ({
   route
 }) => {
   const {
-    item = {}
+    item = defaultValues
   } = route.params || {};
-  const [ImageSource, setImageSource] = useState();
+
+  const onShare = async () => {
+    try {
+      console.log("Shared");
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
   return <SafeAreaView style={styles.container}>
-      <View style={styles.imgScroller}>
-        <Image style={styles.JrJCYiRf} source={require("./images.png")} />
-        <Image style={styles.threeDots} source={require("./assets/3Dots.png")} />
-      </View>
-      <View style={styles.textContainer}>
-        <View><Text style={styles.h1}>{item.title}</Text></View>
-        <View style={styles.xRkJweVS}><View style={styles.MhhhXZCC}>
-          <Text style={styles.MqLCMTKd}>Prep Time: </Text><Text>{item.prep_time}</Text>
-        </View><View style={styles.uXCtqgPR}><Text style={styles.SvrVsbuB}>Cook Time: </Text><Text>{item.cook_time}</Text></View></View>
-        <Text style={styles.text}>{item.instructions}</Text>
-      </View>
+      <ScrollView containerStyle={styles.imgScroller}>
+        <View style={styles.stNDJnlx}>
+          <Image style={styles.JrJCYiRf} source={require("./images.png")} resizeMode="cover" />
+        </View>
+        <View style={styles.textContainer}>
+          <View>
+            <Text style={styles.h1}>{item.title}</Text>
+          </View>
+          <View style={styles.xRkJweVS}>
+            <View style={styles.MhhhXZCC}>
+              <Text style={styles.MqLCMTKd}>Prep Time: </Text>
+              <Text>{item.prep_time} minutes</Text>
+            </View>
+            <View style={styles.uXCtqgPR}>
+              <Text style={styles.SvrVsbuB}>Cook Time: </Text>
+              <Text>{item.cook_time} minutes</Text>
+            </View>
+          </View>
+          <Text style={styles.text}>{item.instructions}</Text>
+          <Pressable style={styles.shareButton} onPress={onShare}>
+            <Icon name="share" size={24} color="white" />
+            <Text style={styles.shareButtonText}>Share Recipe</Text>
+          </Pressable>
+        </View>
+      </ScrollView>
     </SafeAreaView>;
 };
 
@@ -35,25 +64,24 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginVertical: 20
   },
-  threeDots: {
-    marginTop: 20
-  },
   textContainer: {
     paddingHorizontal: 20
   },
   h1: {
     fontSize: 30,
-    color: "#E45700"
+    color: "#E45700",
+    marginVertical: 30
   },
   text: {
-    fontSize: 14,
+    fontSize: 16,
     textAlign: "justify",
-    lineHeight: 18,
     marginVertical: 10
   },
   JrJCYiRf: {
-    width: "100%",
-    height: 150
+    width: "70%",
+    height: 150,
+    borderRadius: 20,
+    marginTop: 20
   },
   xRkJweVS: {
     width: "100%",
@@ -74,6 +102,26 @@ const styles = StyleSheet.create({
   SvrVsbuB: {
     fontSize: 15,
     fontWeight: "bold"
+  },
+  shareButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#E45700",
+    borderRadius: 4,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    marginTop: 20
+  },
+  shareButtonText: {
+    color: "white",
+    fontSize: 16,
+    marginLeft: 10
+  },
+  stNDJnlx: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center"
   }
 });
-export default AboutTheAppScreen;
+export default AboutTheRecipe;
