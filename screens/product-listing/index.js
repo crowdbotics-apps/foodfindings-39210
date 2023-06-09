@@ -18,11 +18,13 @@ const ProductListing = ({
   return <View style={styles.container}>
       <Text style={styles.title}>All Recipes</Text>
       <View style={styles.vcOLBUwm}>
-      <TextInput style={styles.searchInput} onChangeText={text => setSearch(text)} value={search} placeholder="Search" />
+        <TextInput style={styles.searchInput} onChangeText={text => setSearch(text)} value={search} placeholder="Search" />
         <TouchableOpacity style={[styles.filterButton, styles.QHGGWEEL]}>
-          <View style={styles.filterButtonText}><Icon style={styles.OrVIYXNT} name="filter" color="#6F2A00" /></View>
+          <View style={styles.filterButtonText}>
+            <Icon style={styles.OrVIYXNT} name="filter" color="#6F2A00" />
+          </View>
         </TouchableOpacity>
-        </View>
+      </View>
       <View style={styles.filterButtons}>
         <TouchableOpacity style={styles.filterButton}>
           <Text style={styles.filterButtonText}>Breakfast</Text>

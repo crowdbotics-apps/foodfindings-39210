@@ -26,7 +26,9 @@ const CustomButton = ({
       <Icon name="share" size={fontSize} color="white" />
       <Text style={[styles.shareButtonText, {
       fontSize
-    }]}>{title}</Text>
+    }]}>
+        {title}
+      </Text>
     </Pressable>;
 };
 
