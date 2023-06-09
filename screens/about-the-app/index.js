@@ -7,8 +7,7 @@ const defaultValues = {
   cook_time: 40,
   instructions: "Sed tempor mauris vel orci condimentum blandit.Etiam dolor magna, dignissim eu placerat a, ultricies sit amet sapien. Quisque quis mauris purus. Pellentesque mattis metus et ex consectetur tempus. Suspendisse lacus velit, venenatis id odio eu, posuere condimentum leo. Quisque ante tortor, posuere sit amet elit non, pellentesque venenatis mauris. Donec at arcu non ex blandit hendrerit vel ac nisi. Cras finibus lectus quis nisl euismod volutpat. "
 };
-
-const CustomButton = ({
+export const CustomButton = ({
   title,
   fontSize = 18
 }) => {
